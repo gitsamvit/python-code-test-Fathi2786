@@ -32,30 +32,30 @@ class TestClassifyTempBreach(unittest.TestCase):
         self.assertEqual(high, f'{self.header}, TOO_HIGH')
         self.assertEqual(low, f'{self.header}, TOO_LOW')
 
-    def test_medactive_cooling_normal_error(self):
-        lower_limit, upper_limit = self._set_cooling_execute(MedActiveCooling)
-        normal_error = ClassifyTempBreach(100, lower_limit, upper_limit, 'TO_EMAIL')
-        self.assertEqual(normal_error.clasify_temp_breach(), f'To: {self.recepient} \nHi, the temperature is too normal'
-        )
+    # def test_medactive_cooling_normal_error(self):
+    #     lower_limit, upper_limit = self._set_cooling_execute(MedActiveCooling)
+    #     normal_error = ClassifyTempBreach(100, lower_limit, upper_limit, 'TO_EMAIL')
+    #     self.assertEqual(normal_error.clasify_temp_breach(), f'To: {self.recepient} \nHi, the temperature is too normal'
+    #     )
     
-    def test_passive_cooling_high_error(self):
-        lower_limit, upper_limit = self._set_cooling_execute(PassiveCooling)
-        high_error = ClassifyTempBreach(-5, lower_limit, upper_limit, 'TO_EMAIL')
-        self.assertEqual(high_error.clasify_temp_breach(), f'To: {self.recepient} \nHi, the temperature is too high'
-        )
+    # def test_passive_cooling_high_error(self):
+    #     lower_limit, upper_limit = self._set_cooling_execute(PassiveCooling)
+    #     high_error = ClassifyTempBreach(-5, lower_limit, upper_limit, 'TO_EMAIL')
+    #     self.assertEqual(high_error.clasify_temp_breach(), f'To: {self.recepient} \nHi, the temperature is too high'
+    #     )
     
     def test_medactive_cooling_controller(self):
         lower_limit, upper_limit = self._set_cooling_execute(MedActiveCooling)
         normal = ClassifyTempBreach(40, lower_limit, upper_limit).clasify_temp_breach()
         self.assertEqual(normal, f'{self.header}, NORMAL')
     
-    def test_hiactive_cooling_email_error(self):
-        lower_limit, upper_limit = self._set_cooling_execute(HiActiveCooling)
-        breach_high = ClassifyTempBreach(150, lower_limit, upper_limit, 'TO_EMAIL')
-        self.assertEqual(breach_high.clasify_temp_breach(), f'To: {self.recepient} \nHi, the temperature is too low')
+    # def test_hiactive_cooling_email_error(self):
+    #     lower_limit, upper_limit = self._set_cooling_execute(HiActiveCooling)
+    #     breach_high = ClassifyTempBreach(150, lower_limit, upper_limit, 'TO_EMAIL')
+    #     self.assertEqual(breach_high.clasify_temp_breach(), f'To: {self.recepient} \nHi, the temperature is too low')
     
-    def test_empty_context(self):
-        _, _ = self.context.set_battery_char()
+    # def test_empty_context(self):
+    #     _, _ = self.context.set_battery_char()
 
 if __name__ == '__main__':
     unittest.main()
